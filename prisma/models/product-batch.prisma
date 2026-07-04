@@ -1,0 +1,15 @@
+model ProductBatch {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId       String   @db.ObjectId
+  product         Product  @relation(fields: [productId], references: [id])
+  lotNumber       String
+  manufactureDate String?
+  expiryDate      String?
+  createdAt       DateTime @default(now())
+
+  inventoryStock     InventoryStock[]
+  serialNumbers      SerialNumber[]
+  stockMovements     StockMovement[]
+  purchaseOrderItems PurchaseOrderItem[]
+  salesOrderItems    SalesOrderItem[]
+}

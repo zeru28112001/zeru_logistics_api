@@ -1,0 +1,25 @@
+model Product {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  sku         String    @unique
+  barcode     String?   @unique
+  name        String
+  description String?
+  categoryId  String?   @db.ObjectId
+  category    Category? @relation(fields: [categoryId], references: [id])
+  unit        String    @default("pcs")
+  costPrice   Float     @default(0)
+  sellPrice   Float     @default(0)
+  minStock    Int       @default(0)
+  trackLot    Boolean   @default(false)
+  trackSerial Boolean   @default(false)
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  batches            ProductBatch[]
+  inventoryStock     InventoryStock[]
+  serialNumbers      SerialNumber[]
+  stockMovements     StockMovement[]
+  purchaseOrderItems PurchaseOrderItem[]
+  salesOrderItems    SalesOrderItem[]
+}

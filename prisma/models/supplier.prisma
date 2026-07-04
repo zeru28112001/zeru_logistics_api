@@ -1,0 +1,14 @@
+model Supplier {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  code          String   @unique
+  name          String
+  contactPerson String?
+  email         String?
+  phone         String?
+  address       String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  purchaseOrders PurchaseOrder[]
+}

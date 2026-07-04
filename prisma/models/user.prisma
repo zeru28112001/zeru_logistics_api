@@ -1,0 +1,16 @@
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  password  String
+  role      UserRole @default(staff)
+  phone     String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  purchaseOrdersCreated PurchaseOrder[] @relation("PurchaseOrderCreator")
+  salesOrdersCreated    SalesOrder[]    @relation("SalesOrderCreator")
+  stockMovementsCreated StockMovement[] @relation("StockMovementCreator")
+  shipmentsAsDriver     Shipment[]      @relation("ShipmentDriver")
+}

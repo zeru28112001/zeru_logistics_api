@@ -1,0 +1,33 @@
+model SalesOrder {
+  id           String           @id @default(auto()) @map("_id") @db.ObjectId
+  soNumber     String           @unique
+  customerId   String           @db.ObjectId
+  customer     Customer         @relation(fields: [customerId], references: [id])
+  warehouseId  String           @db.ObjectId
+  warehouse    Warehouse        @relation(fields: [warehouseId], references: [id])
+  status       SalesOrderStatus @default(draft)
+  orderDate    String
+  deliveryDate String?
+  totalAmount  Float            @default(0)
+  notes        String?
+  createdBy    String?          @db.ObjectId
+  creator      User?            @relation("SalesOrderCreator", fields: [createdBy], references: [id])
+  items        SalesOrderItem[]
+  shipments    Shipment[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+model SalesOrderItem {
+  id              String        @id @default(auto()) @map("_id") @db.ObjectId
+  salesOrderId    String        @db.ObjectId
+  salesOrder      SalesOrder    @relation(fields: [salesOrderId], references: [id])
+  productId       String        @db.ObjectId
+  product         Product       @relation(fields: [productId], references: [id])
+  batchId         String?       @db.ObjectId
+  batch           ProductBatch? @relation(fields: [batchId], references: [id])
+  quantityOrdered Float
+  quantityPicked  Float         @default(0)
+  unitPrice       Float         @default(0)
+  lineTotal       Float         @default(0)
+}

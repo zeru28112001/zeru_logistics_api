@@ -1,0 +1,15 @@
+model Shipment {
+  id              String         @id @default(auto()) @map("_id") @db.ObjectId
+  shipmentNumber  String         @unique
+  salesOrderId    String         @db.ObjectId
+  salesOrder      SalesOrder     @relation(fields: [salesOrderId], references: [id])
+  driverId        String?        @db.ObjectId
+  driver          User?          @relation("ShipmentDriver", fields: [driverId], references: [id])
+  status          ShipmentStatus @default(pending)
+  shippedAt       DateTime?
+  deliveredAt     DateTime?
+  deliveryAddress String?
+  notes           String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}

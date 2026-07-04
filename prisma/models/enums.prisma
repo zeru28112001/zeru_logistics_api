@@ -1,0 +1,48 @@
+enum UserRole {
+  admin
+  staff
+  driver
+}
+
+enum PurchaseOrderStatus {
+  draft
+  submitted
+  partial
+  received
+  cancelled
+}
+
+enum SalesOrderStatus {
+  draft
+  confirmed
+  picking
+  shipped
+  delivered
+  cancelled
+}
+
+enum ShipmentStatus {
+  pending
+  in_transit
+  delivered
+  failed
+  cancelled
+}
+
+enum SerialStatus {
+  available
+  reserved
+  sold
+  damaged
+  in_transit
+}
+
+enum MovementType {
+  purchase_in
+  sale_out
+  transfer_in
+  transfer_out
+  adjustment
+  return_in
+  return_out
+}
