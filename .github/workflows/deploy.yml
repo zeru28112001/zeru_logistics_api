@@ -1,0 +1,26 @@
+name: Deploy zeru_logistics_api
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.2.0
+
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+          script: |
+            cd ~/apps/zeru_logistics_api
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart zeru_logistic_api
