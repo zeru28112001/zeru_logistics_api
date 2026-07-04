@@ -18,7 +18,7 @@ import {
   ParseBooleanPipe,
   ParseObjectIdPipe,
 } from '../../common/pipes';
-import { WarehousesService } from '../../services/warehouses.service';
+import { WarehousesService } from './warehouses.service';
 import { CreateWarehouseDto } from './dto/create-warehouse.dto';
 import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 

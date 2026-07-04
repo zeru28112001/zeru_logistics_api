@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { ListQueryParams } from '../../common/interfaces/list-query.interface';
 import {
   buildPaginatedResult,
   getPaginationParams,
-} from '../common/utils/pagination.util';
-import { ListQueryParams } from '../common/interfaces/list-query.interface';
-import { CreateCategoryDto } from '../modules/categories/dto/create-category.dto';
-import { UpdateCategoryDto } from '../modules/categories/dto/update-category.dto';
-import { PrismaService } from './prisma.service';
+} from '../../common/utils/pagination.util';
+import { PrismaService } from '../prisma/prisma.service';
+import { CreateCategoryDto } from './dto/create-category.dto';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Injectable()
 export class CategoriesService {

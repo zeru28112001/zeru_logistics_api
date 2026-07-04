@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma, ShipmentStatus } from '@prisma/client';
+import { ListQueryParams } from '../../common/interfaces/list-query.interface';
 import {
   buildPaginatedResult,
   getPaginationParams,
-} from '../common/utils/pagination.util';
-import { ListQueryParams } from '../common/interfaces/list-query.interface';
-import { CreateShipmentDto } from '../modules/shipments/dto/create-shipment.dto';
-import { PrismaService } from './prisma.service';
+} from '../../common/utils/pagination.util';
+import { PrismaService } from '../prisma/prisma.service';
+import { CreateShipmentDto } from './dto/create-shipment.dto';
 
 @Injectable()
 export class ShipmentsService {

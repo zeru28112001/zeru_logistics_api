@@ -16,7 +16,7 @@ import {
   ParseObjectIdPipe,
   ParseOptionalObjectIdPipe,
 } from '../../common/pipes';
-import { SalesOrdersService } from '../../services/sales-orders.service';
+import { SalesOrdersService } from './sales-orders.service';
 import { CreateSalesOrderDto } from './dto/create-sales-order.dto';
 
 @Controller('sales-orders')

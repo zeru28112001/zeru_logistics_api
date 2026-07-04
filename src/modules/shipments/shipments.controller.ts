@@ -17,7 +17,7 @@ import {
   ParseObjectIdPipe,
   ParseOptionalObjectIdPipe,
 } from '../../common/pipes';
-import { ShipmentsService } from '../../services/shipments.service';
+import { ShipmentsService } from './shipments.service';
 import { CreateShipmentDto } from './dto/create-shipment.dto';
 import { UpdateShipmentStatusDto } from './dto/update-shipment-status.dto';
 

@@ -17,7 +17,7 @@ import {
   ParseBooleanPipe,
   ParseObjectIdPipe,
 } from '../../common/pipes';
-import { SuppliersService } from '../../services/suppliers.service';
+import { SuppliersService } from './suppliers.service';
 import { CreateSupplierDto } from './dto/create-supplier.dto';
 import { UpdateSupplierDto } from './dto/update-supplier.dto';
 

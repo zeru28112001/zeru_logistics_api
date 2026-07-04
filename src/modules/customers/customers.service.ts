@@ -1,16 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { ListQueryParams } from '../../common/interfaces/list-query.interface';
 import {
   buildPaginatedResult,
   getPaginationParams,
-} from '../common/utils/pagination.util';
-import { ListQueryParams } from '../common/interfaces/list-query.interface';
-import { CreateSupplierDto } from '../modules/suppliers/dto/create-supplier.dto';
-import { UpdateSupplierDto } from '../modules/suppliers/dto/update-supplier.dto';
-import { PrismaService } from './prisma.service';
+} from '../../common/utils/pagination.util';
+import { PrismaService } from '../prisma/prisma.service';
+import { CreateCustomerDto } from './dto/create-customer.dto';
+import { UpdateCustomerDto } from './dto/update-customer.dto';
 
 @Injectable()
-export class SuppliersService {
+export class CustomersService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(query: ListQueryParams & { all?: boolean }) {
@@ -18,7 +18,7 @@ export class SuppliersService {
       query.page,
       query.size,
     );
-    const where: Prisma.SupplierWhereInput = {
+    const where: Prisma.CustomerWhereInput = {
       ...(query.all ? {} : { isActive: true }),
       ...(query.search
         ? {
@@ -26,40 +26,41 @@ export class SuppliersService {
               { name: { contains: query.search, mode: 'insensitive' } },
               { code: { contains: query.search, mode: 'insensitive' } },
               { email: { contains: query.search, mode: 'insensitive' } },
+              { phone: { contains: query.search, mode: 'insensitive' } },
             ],
           }
         : {}),
     };
 
     const [items, total] = await Promise.all([
-      this.prisma.supplier.findMany({
+      this.prisma.customer.findMany({
         where,
         orderBy: { name: 'asc' },
         skip,
         take,
       }),
-      this.prisma.supplier.count({ where }),
+      this.prisma.customer.count({ where }),
     ]);
 
     return buildPaginatedResult(items, total, page, size);
   }
 
   findOne(id: string) {
-    return this.prisma.supplier.findUnique({ where: { id } });
+    return this.prisma.customer.findUnique({ where: { id } });
   }
 
-  create(dto: CreateSupplierDto) {
-    return this.prisma.supplier.create({ data: dto });
+  create(dto: CreateCustomerDto) {
+    return this.prisma.customer.create({ data: dto });
   }
 
-  async update(id: string, dto: UpdateSupplierDto) {
+  async update(id: string, dto: UpdateCustomerDto) {
     await this.ensureExists(id);
-    return this.prisma.supplier.update({ where: { id }, data: dto });
+    return this.prisma.customer.update({ where: { id }, data: dto });
   }
 
   private async ensureExists(id: string) {
     const row = await this.findOne(id);
-    if (!row) throw new NotFoundException('Supplier not found');
+    if (!row) throw new NotFoundException('Customer not found');
     return row;
   }
 }

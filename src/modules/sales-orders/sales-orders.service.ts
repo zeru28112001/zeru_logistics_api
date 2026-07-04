@@ -1,13 +1,17 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { MovementType, Prisma, SalesOrderStatus } from '@prisma/client';
+import { ListQueryParams } from '../../common/interfaces/list-query.interface';
 import {
   buildPaginatedResult,
   getPaginationParams,
-} from '../common/utils/pagination.util';
-import { ListQueryParams } from '../common/interfaces/list-query.interface';
-import { CreateSalesOrderDto } from '../modules/sales-orders/dto/create-sales-order.dto';
-import { InventoryService } from './inventory.service';
-import { PrismaService } from './prisma.service';
+} from '../../common/utils/pagination.util';
+import { InventoryService } from '../inventory/inventory.service';
+import { PrismaService } from '../prisma/prisma.service';
+import { CreateSalesOrderDto } from './dto/create-sales-order.dto';
 
 @Injectable()
 export class SalesOrdersService {

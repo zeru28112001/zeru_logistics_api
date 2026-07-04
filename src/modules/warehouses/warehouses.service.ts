@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma, Warehouse } from '@prisma/client';
+import { ListQueryParams } from '../../common/interfaces/list-query.interface';
 import {
   buildPaginatedResult,
   getPaginationParams,
-} from '../common/utils/pagination.util';
-import { ListQueryParams } from '../common/interfaces/list-query.interface';
-import { CreateWarehouseDto } from '../modules/warehouses/dto/create-warehouse.dto';
-import { UpdateWarehouseDto } from '../modules/warehouses/dto/update-warehouse.dto';
-import { PrismaService } from './prisma.service';
+} from '../../common/utils/pagination.util';
+import { PrismaService } from '../prisma/prisma.service';
+import { CreateWarehouseDto } from './dto/create-warehouse.dto';
+import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 
 @Injectable()
 export class WarehousesService {
