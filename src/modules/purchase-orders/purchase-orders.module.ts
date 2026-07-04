@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { PurchaseOrdersService } from '../../services/purchase-orders.service';
+import { PurchaseOrdersService } from './purchase-orders.service';
 import { InventoryModule } from '../inventory/inventory.module';
 import { PurchaseOrdersController } from './purchase-orders.controller';
 

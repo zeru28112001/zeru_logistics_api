@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { MovementType, Prisma } from '@prisma/client';
+import { ListQueryParams } from '../../common/interfaces/list-query.interface';
 import {
   buildPaginatedResult,
   getPaginationParams,
-} from '../common/utils/pagination.util';
-import { ListQueryParams } from '../common/interfaces/list-query.interface';
-import { AdjustStockDto } from '../modules/inventory/dto/adjust-stock.dto';
-import { PrismaService } from './prisma.service';
+} from '../../common/utils/pagination.util';
+import { PrismaService } from '../prisma/prisma.service';
+import { AdjustStockDto } from './dto/adjust-stock.dto';
 
 @Injectable()
 export class InventoryService {

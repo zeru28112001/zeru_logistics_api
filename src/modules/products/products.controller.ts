@@ -20,7 +20,7 @@ import {
   ParseOptionalObjectIdPipe,
   ParseStringPipe,
 } from '../../common/pipes';
-import { ProductsService } from '../../services/products.service';
+import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 

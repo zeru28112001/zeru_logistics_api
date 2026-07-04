@@ -12,7 +12,7 @@ import {
   DEFAULT_PAGE_SIZE,
 } from '../../common/constants';
 import { ParseOptionalObjectIdPipe } from '../../common/pipes';
-import { InventoryService } from '../../services/inventory.service';
+import { InventoryService } from './inventory.service';
 import { AdjustStockDto } from './dto/adjust-stock.dto';
 
 @Controller('inventory')

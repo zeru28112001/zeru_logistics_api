@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { MovementType, Prisma, PurchaseOrderStatus } from '@prisma/client';
+import { ListQueryParams } from '../../common/interfaces/list-query.interface';
 import {
   buildPaginatedResult,
   getPaginationParams,
-} from '../common/utils/pagination.util';
-import { ListQueryParams } from '../common/interfaces/list-query.interface';
-import { CreatePurchaseOrderDto } from '../modules/purchase-orders/dto/create-purchase-order.dto';
-import { InventoryService } from './inventory.service';
-import { PrismaService } from './prisma.service';
+} from '../../common/utils/pagination.util';
+import { InventoryService } from '../inventory/inventory.service';
+import { PrismaService } from '../prisma/prisma.service';
+import { CreatePurchaseOrderDto } from './dto/create-purchase-order.dto';
 
 @Injectable()
 export class PurchaseOrdersService {
